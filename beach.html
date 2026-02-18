@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letter to you</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Noto+Serif+Thai:wght@100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <audio id="bgMusic" loop>
+    <source src="bg-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <section class="screen active beach-plain-bg" id="screenBeach18" onclick="goToBeach(19)">
+    <div class="overlay"></div>
+    <div class="touchtogonext-black">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen beach-bg" id="screenBeach19" onclick="goToBeach(20)">
+    <div class="overlay"></div>
+    <div class="content_P19">
+      ที่นี่เองสินะทำให้ใจคุณได้พักผ่อน <br>
+      ได้เห็นทีไรก็สบายใจ<br>
+    </div>
+    <div class="touchtogonext-black">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+ 
+  <section class="screen beach-bg" id="screenBeach20" onclick="goToBeach(21)">
+    <div class="overlay"></div>
+    <div class="content_P20">
+      ว่าแต่...<br>
+      </p>
+    </div>
+    <div class="touchtogonext-black">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen beach-bg" id="screenBeach21">
+    <div class="overlay"></div>
+    <div class="content_P21">
+      <h1 class="reason_ask_beach">ทำไมคุณถึงเลือกที่นี่หรอ</h1>
+
+      <input type="text" id="beachReason" placeholder="พิมพ์คำตอบของคุณ" />
+    </div>
+    <div class="actions_rb">
+      <button class="next-btn-black-P3" onclick="saveReasonBeachAndNext()">ถัดไป</button>
+    </div>
+  </section>
+
+  <section class="screen beach-bg" id="screenBeach22" onclick="goToBeach(23)">
+    <div class="overlay"></div>
+    <div class="content_P22">
+      แบบนี้นี่เองสินะ<br>
+      </p>
+    </div>
+    <div class="touchtogonext-black">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screenBeach23" onclick="goToBeach(24)">
+    <div class="overlay"></div>
+    <div class="content_P23">
+      บางทีแค่ได้มานั่งมองทะเลเฉย ๆ<br>
+      ก็ทำให้ใจเราสงบดีเหมือนกันนะ
+      </p>
+    </div>
+    <div class="touchtogonext-black">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screenBeach24" onclick="goToBeach(25)">
+    <div class="overlay"></div>
+    <div class="content_P24">
+      จนทำให้คุณ…ได้คิดอะไรบางอย่างขึ้นมา
+      </p>
+    </div>
+    <div class="touchtogonext-black">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screenBeach25" onclick="goToBeach(26)">
+    <div class="overlay"></div>
+    <div class="content_P25">
+      นี่ก็ผ่านมา <span id="showAge"></span> ปีแล้ว <br>
+      เวลามันผ่านไปเร็วเนอะ<br>
+      เร็วพอจะทำให้เรา…<br>
+      ลืมหันกลับมามองหัวใจตัวเองไปบ้าง<br>
+      ... <br>
+      ช่วงนี้เป็นอย่างไรบ้างนะ?
+    </div>
+    <div class="touchtogonext-black">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screenBeach26">
+    <div class="overlay"></div>
+    <div class="content_P26">
+      <p class="subtitle">
+        ช่วงนี้คุณเป็นยังไงบ้าง
+      </p>
+    </div>
+    <div class="actions-3">
+      <button class="button-good" onclick="chooseMood('good'); fadeOutAndGo('good.html')">
+        มีความสุขดีนะ
+      </button>
+
+      <button class="button-soso" onclick="chooseMood('soso'); fadeOutAndGo('soso.html')">
+        เฉย ๆ
+      </button>
+
+      <button class="button-sad" onclick="chooseMood('sad'); fadeOutAndGo('sad.html')">
+        ไม่ค่อยโอเคเท่าไหร่
+      </button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letter to you</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Noto+Serif+Thai:wght@100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <audio id="bgMusic" loop>
+    <source src="bg-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="doorbellSound">
+    <source src="doorbell.mp3" type="audio/mpeg">
+  </audio>
+
+  <section class="screen active" id="screen1">
+    <div class="overlay"></div>
+
+    <div class="content_P1">
+      <h1>Letter to you</h1>
+      <p class="subtitle">
+        พื้นที่เล็ก ๆ<br>
+        สำหรับการทบทวนหัวใจของตัวเอง
+      </p>
+    </div>
+
+    <div class="actions">
+      <button class="next-btn-pink-P1" onclick="goTo(2)">เริ่มเล่น</button>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screen2">
+    <div class="overlay"></div>
+
+    <div class="content_P2">
+      <h1 class="caution">คำเตือน</h1>
+      <p class="subtitle">
+        เว็บแอปนี้เป็นพื้นที่สำหรับการทบทวนตัวเอง<br>
+        ไม่ใช่การวินิจฉัยทางจิตวิทยา<br>
+        หากระหว่างใช้งานรู้สึกไม่สบายใจ<br>
+        สามารถหยุดได้ทันที<br>
+        และขอความช่วยเหลือจากคนที่คุณไว้ใจได้
+      </p>
+    </div>
+    <div class="actions">
+      <button class="next-btn-black-P2" onclick="goTo(3)">ถัดไป</button>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screen3">
+    <div class="overlay"></div>
+    <div class="content_P3">
+      <h1 class="name_ask">อยากให้เราเรียกคุณว่าอะไร?</h1>
+      <input type="text" id="userName" placeholder="พิมพ์ชื่อของคุณ" />
+    </div>
+    <div class="actions">
+      <button class="next-btn-black-P3" onclick="saveNameAndNext()">ถัดไป</button>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screen4">
+    <div class="overlay"></div>
+    <div class="content_P4">
+      <h1 class="age_ask">คุณอายุเท่าไหร่หรอ?</h1>
+      <input type="number" id="age" placeholder="พิมพ์อายุของคุณ" />
+    </div>
+    <div class="actions">
+      <button class="next-btn-black-P3" onclick="saveAgeAndNext()">ถัดไป</button>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screen5">
+    <div class="overlay"></div>
+    <div class="content_P5">
+      <p class="subtitle">
+        วันนี้คุณเป็นยังไงบ้าง<br>
+        ในวันที่โลกดูวุ่นวาย<br>
+        หรือบางทีชีวิตก็อาจวุ่นวายไม่แพ้กัน<br>
+        ลองให้เวลาตัวเองสักนิด<br>
+        เพื่อทบทวนหัวใจของตัวเองดูไหม
+      </p>
+    </div>
+    <div class="actions">
+      <button class="next-btn-black-P5" onclick="startMusic(); goTo(6)">ถัดไป</button>
+    </div>
+  </section>
+
+  <section class="screen" id="screen6" onclick="goTo(7)">
+    <div class="content_P6">
+      <p class="fade-delay">"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen" id="screen7" onclick="goTo(8)">
+    <div class="content_P7">
+      <p class="subtitle">วันนี้เป็นอีกวันที่คุณก้าวผ่านมันมา<br>
+        ท่ามกลางเสียงรอบตัว<br>
+        ผู้คน เรื่องราว และความคิดมากมาย<br>
+        ระหว่างทางกลับบ้าน คุณค่อย ๆ เดินไป<br>
+        พร้อมกับความรู้สึกที่อาจยังไม่ได้ตั้งชื่อ
+      </p>
+      <div class="touchtogonext-white">
+        <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screen8" onclick="goTo(9)">
+    <div class="overlay"></div>
+    <div class="content_P8">
+      <p class="subtitle">
+        ในที่สุด<br>
+        คุณก็กลับมาถึงพื้นที่ของตัวเอง<br>
+        วางกระเป๋าลงข้างตัว<br>
+        ถอดโลกทั้งใบออกจากบ่า<br>
+        ห้องเงียบกว่าข้างนอกมาก<br>
+        และเป็นครั้งแรกของวัน<br>
+        ที่คุณไม่จำเป็นต้องเป็นอะไรให้ใครเห็น<br>
+      </p>
+    </div>
+    <div class="touchtogonext-black">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screen9" onclick="goTo(10)">
+    <div class="overlay"></div>
+    <div class="content_P9">
+      <p class="subtitle">
+        คุณเอนตัวลงบนเตียง<br>
+        ปล่อยให้เสียงรอบตัวค่อย ๆ เบาลง<br>
+        ความคิดที่วุ่นวายเริ่มช้าลงตามลมหายใจ<br>
+        เปลือกตาหนักขึ้นทีละนิด<br>
+        และคุณก็เผลอหลับไปอย่างแผ่วเบา
+      </p>
+    </div>
+    <div class="touchtogonext-black">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screen10" onclick="goTo(11)">
+    <div class="overlay"></div>
+    <div class="content_P10">
+      <p class="subtitle">
+        ในความเงียบที่ค่อย ๆ คลุมทับทุกอย่าง<br>
+        ภาพบางอย่างเริ่มลอยขึ้นมาอย่างแผ่วเบา<br>
+        ไม่ชัดเจน ไม่ต้องเข้าใจ<br>
+        แค่ปล่อยให้มันพาไป
+      </p>
+    </div>
+    <div class="touchtogonext-black">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screen11" onclick="playDoorbell(() => goTo(12))">
+    <div class="overlay"></div>
+    <div class="content_P11">
+      <p class="subtitle">
+        ในความฝันนั้น<br>
+        ทุกอย่างดูช้าลง<br>
+        เหมือนเวลาหยุดพักชั่วคราว
+      </p>
+    </div>
+    <div class="touchtogonext-black">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen" id="screen12" onclick="goTo(13)">
+    <div class="overlay"></div>
+    <div class="touchtogonext-white">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screen13">
+    <div class="overlay"></div>
+    <div class="content_P13">
+      <p class="subtitle">
+        ถ้าตอนนี้<br>
+        มีใครบางคนกำลังรอคุณอยู่หน้าประตู<br>
+        ในรูปแบบของ สัตว์ตัวหนึ่ง<br>
+        คุณคิดว่าสัตว์ตัวนั้นคืออะไร
+      </p>
+    </div>
+    <div class="button_1">
+      <button class="button-dog" onclick="chooseAnimal('dog'); goTo(14)">
+        น้องหมา
+      </button>
+    </div>
+    <div class="button_2">
+      <button class="button-cat" onclick="chooseAnimal('cat'); goTo(15)">
+        น้องแมว
+      </button>
+    </div>
+  </section>
+
+  <section class="screen" id="screen14">
+    <div class="content_dog">
+      <p class="subtitle">
+        เหมือนน้องจะอยากนั่งอยู่ตรงนี้กับคุณสักพัก<br>
+        ถ้าคุณพร้อม<br>
+        ลองคุยกับน้องดูไหม
+      </p>
+
+      <button class="button_4" onclick="goTo(16)">ได้เลย</button>
+    </div>
+  </section>
+
+  <section class="screen" id="screen15">
+    <div class="content_cat">
+      <p class="subtitle">
+        เหมือนน้องจะอยากนั่งอยู่ตรงนี้กับคุณสักพัก<br>
+        ถ้าคุณพร้อม<br>
+        ลองคุยกับน้องดูไหม
+      </p>
+      <button class="button_4" onclick="goTo(16)">ได้เลย</button>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screen16" onclick="goTo(17)">
+    <div class="overlay"></div>
+    <div class="content_P16">
+      <p class="subtitle">
+        ดูเหมือนคุณจะเหนื่อยมาทั้งวันแล้ว<br>
+        เราไปเดินเล่น พักผ่อนกันสักหน่อยดีไหม<br>
+      </p>
+    </div>
+    <div class="touchtogonext-black">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screen17" onclick="goTo(18)">
+    <div class="overlay"></div>
+    <div class="content_P17">
+      <p class="subtitle">
+        อืม…แต่เรานึกไม่ออกเลยว่าจะไปไหนดี <br>
+        งั้นคุณช่วยเลือกให้หน่อยได้ไหม
+      </p>
+    </div>
+    <div class="touchtogonext-black">
+      <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+    </div>
+  </section>
+
+  <section class="screen yellow-bg" id="screen18">
+    <div class="overlay"></div>
+    <div class="content_P18">
+      <p class="subtitle">
+        ตอนนี้…ที่ไหนน่าจะทำให้คุณสบายใจที่สุด
+      </p>
+    </div>
+    <div class="actions-2">
+      <button class="button-beach" onclick="choosePlace('beach'); fadeOutAndGo('beach.html')">
+        ทะเล
+      </button>
+
+      <button class="button-mountain" onclick="choosePlace('mountain'); fadeOutAndGo('mountain.html')">
+        ภูเขา
+      </button>
+
+      <button class="button-garden" onclick="choosePlace('garden'); fadeOutAndGo('garden.html')">
+        สวนดอกไม้
+      </button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

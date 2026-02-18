@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Letter to you</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Noto+Serif+Thai:wght@100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <audio id="bgMusic" loop>
+        <source src="bg-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="doorbellSound">
+        <source src="doorbell.mp3" type="audio/mpeg">
+    </audio>
+
+    <section class="screen yellow-bg center-box active" id="screenSad1" onclick="goToSad(2)">
+        <div class="overlay"></div>
+        <div class="center-text">
+            วันนี้อาจไม่ได้เป็นวันที่ดีนัก<br>
+            และคุณก็ไม่จำเป็นต้องอธิบายมันทั้งหมด<br>
+            แค่รู้ว่าความรู้สึกนี้<br>
+            มีที่ให้วางอยู่ตรงนี้ก็พอแล้ว
+        </div>
+        <div class="touchtogonext-black">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen yellow-bg" id="screenSad2">
+        <div class="overlay"></div>
+        <div class="content_Sad2">
+            <h1 class="sad_ask">
+                ถ้าคุณอยากเล่า<br>
+                ช่วยเล่าให้เราฟังหน่อยได้ไหมว่าเกิดอะไรขึ้น<br>
+                ตรงนี้เป็นพื้นที่ที่ปลอดภัย<br>
+                และคุณไม่จำเป็นต้องเข้มแข็งเลยนะ
+            </h1>
+            <textarea id="sadStory" rows="10" placeholder="พิมพ์เรื่องราวของคุณที่นี่..."></textarea>
+        </div>
+
+        <div class="actions">
+            <button class="next-btn-black-P3" onclick="saveSadStoryAndNext()">ถัดไป</button>
+        </div>
+    </section>
+
+    <section class="screen yellow-bg center-box" id="screenSad3" onclick="goToSad(4)">
+        <div class="overlay"></div>
+        <div class="center-text">
+            ขอบคุณนะ ที่เล่าให้เราฟัง<br>
+            ช่วงเวลาแบบนี้ไม่ง่ายเลย<br>
+            ตอนนี้ไม่จำเป็นต้องทำอะไรต่อ<br>
+            แค่ให้ตัวเองได้พักอยู่ตรงนี้<br>
+            ก็เพียงพอแล้ว
+        </div>
+        <div class="touchtogonext-black">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen yellow-bg" id="screenSad4">
+        <div class="overlay"></div>
+        <div class="content_Sad3">
+            <h1 class="sad_asktoTell">
+                ถ้ามีใครสักคน<br>
+                กำลังอยู่ในช่วงเวลาที่หนักแบบนี้<br>
+                คุณอยากบอกอะไรกับเขาบ้าง
+            </h1>
+            <textarea id="sadTell" rows="10" placeholder="พิมพ์คำตอบของคุณที่นี่..."></textarea>
+        </div>
+        <div class="actions">
+            <button class="next-btn-black-P3" onclick="saveSadTellAndNext()">ถัดไป</button>
+        </div>
+    </section>
+
+    <section class="screen yellow-bg center-box" id="screenSad5" onclick="goToSad(6)">
+        <div class="overlay"></div>
+        <div class="center-text">
+            คำพูดนั้น<br>
+            อาจถูกเขียนขึ้นเพื่อใครสักคน<br>
+            แต่บางที<br>
+            มันก็อาจกำลังรอ<br>
+            ให้คุณได้ยินมันด้วยเหมือนกัน
+        </div>
+        <div class="touchtogonext-black">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen yellow-bg center-box" id="screenSad6" onclick="goToSad(7)">
+        <div class="overlay"></div>
+        <div class="center-text">
+            หลังจากนั้น<br>
+            คุณทั้งสองก็เดินต่อไปเรื่อย ๆ
+        </div>
+        <div class="touchtogonext-black">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen yellow-bg center-box" id="screenSad7" onclick="goToSad(8)">
+        <div class="overlay"></div>
+        <div class="center-text">
+            จนพบกับ กล่องสีแดงใบหนึ่ง<br>
+            ที่ดูเหมือนจะรอใครบางคนอยู่
+        </div>
+        <div class="touchtogonext-black">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen yellow-bg center-box" id="screenSad8" onclick="goToSad(9)">
+        <div class="overlay"></div>
+        <div class="center-text">
+            ตอนแรกทุกอย่างยังดูพร่าเลือนเล็กน้อย<br>
+            สีแดงนั้นค่อย ๆ ชัดขึ้นทีละนิด<br>
+            จนคุณมองเห็นช่องเล็ก ๆ อยู่ตรงกลาง
+        </div>
+        <div class="touchtogonext-black">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen" id="screenSad9" onclick="goToSad(10)">
+        <div class="touchtogonext-white-down">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen" id="screenSad10" onclick="goToSad(11)">
+        <div class="touchtogonext-white-down">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen" id="screenSad11" onclick="goToSad(12)">
+        <div class="touchtogonext-white-down">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen" id="screenSad12" onclick="goToSad(13)">
+        <div class="touchtogonext-white-down">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen center-box" id="screenSad13" onclick="goToSad(14)">
+        <div class="overlay"></div>
+        <div class="content_Good13">
+            ตอนนี้คุณเห็นมันชัดเจนแล้ว<br>
+            กล่องสีแดงใบนั้น<br>
+            ตั้งอยู่ตรงหน้าคุณจริง ๆ
+        </div>
+        <div class="touchtogonext-white-down">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen center-box" id="screenSad14" onclick="goToSad(15)">
+        <div class="overlay"></div>
+        <div class="content_Good13">
+            ใครบางคนที่ยืนอยู่ข้าง ๆ คุณ<br>
+            ค่อย ๆ ก้าวเข้าไปใกล้<br>
+            ในมือของน้อง<br>
+            มีกระดาษแผ่นเล็ก ๆ หนึ่งแผ่น
+        </div>
+        <div class="touchtogonext-white-down">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen center-box" id="screenSad15" onclick="goToSad(16)">
+        <div class="overlay"></div>
+        <div class="content_Good13">
+            น้องไม่พูดอะไร <br>
+            แค่ก้าวเข้าไปใกล้ <br>
+            แล้วหย่อนจดหมายลงไปอย่างเบามือ
+        </div>
+        <div class="touchtogonext-white-down">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen center-box" id="screenSad16" onclick="goToSad(17)">
+        <div class="overlay"></div>
+        <div class="content_Good13">
+            น้องหันกลับมามองคุณ <br>
+            แล้วยิ้มบาง ๆ <br>
+            ก่อนที่ร่างเล็ก ๆ นั้น <br>
+            จะค่อย ๆ เลือนหายไป
+        </div>
+        <div class="touchtogonext-white-down">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen center-box eye-closed-bg" id="screenSad17" onclick="goToSad(18)">
+        <div class="overlay"></div>
+        <div class="touchtogonext-white-down">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen center-box wake-room-bg" id="screenSad18" onclick="playDoorbell(() => goToSad(19))">
+        <div class="overlay"></div>
+        <div class="content_Good18">
+            แสงแดดยามเช้าส่องผ่านผ้าม่านบาง ๆ<br>
+            คุณค่อย ๆ ลืมตาขึ้นมา
+        </div>
+        <div class="touchtogonext-white-down-room">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen center-box wake-room-bg" id="screenSad19" onclick="goToSad(20)">
+        <div class="overlay"></div>
+        <div class="content_Good18">
+            เสียงที่คุ้นเคยดังขึ้นอีกครั้ง<br>
+            คุณขมวดคิ้วนิดหนึ่ง <br>
+            ก่อนจะลุกขึ้นจากเตียง<br>
+            แล้วเดินไปตามเสียงนั้น
+        </div>
+        <div class="touchtogonext-white-down-room">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen center-box" id="screenSad20" onclick="goToSad(21)">
+        <div class="overlay"></div>
+        <div class="content_Good20">
+            คุณหยุดอยู่หน้าประตู<br>
+            แล้วสูดลมหายใจเข้าอย่างลึก ๆ<br>
+            ก่อนจะเปิดประตูออกไป...
+        </div>
+        <div class="touchtogonext-white-down-room">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen center-box letter-1" id="screenSad21" onclick="goToSad(22)"></section>
+    <section class="screen center-box letter-2" id="screenSad22" onclick="goToSad(23)"></section>
+    <section class="screen center-box letter-3" id="screenSad23" onclick="goToSad(24)"></section>
+    <section class="screen center-box letter-4" id="screenSad24" onclick="goToSad(25)">
+        <div class="content_Good24">
+            แตะเพื่ออ่านจดหมาย
+        </div>
+    </section>
+
+    <section class="screen center-box letter-bg" id="screenSad25" onclick="goToSad(26)">
+        <div class="letter-container">
+            <p id="letterContent"></p>
+            <button class="next-btn-black-mood" onclick="goToSad(26)">
+                ถัดไป
+            </button>
+        </div>
+    </section>
+
+    <section class="screen yellow-bg center-box" id="screenSad26" onclick="goToSad(27)">
+        <div class="overlay"></div>
+        <div class="center-text">
+            คุณถือจดหมายใบนั้นไว้อยู่ครู่หนึ่ง<br>
+            เหมือนปล่อยให้ความเงียบโอบใจไว้เบา ๆ
+        </div>
+        <div class="touchtogonext-black">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen yellow-bg center-box" id="screenSad27" onclick="goToSad(28)">
+        <div class="overlay"></div>
+        <div class="center-text">
+            บางทีการประคองตัวเองไว้<br>
+            ในวันที่ยังเจ็บอยู่<br>
+            ก็ต้องใช้พลังไม่น้อยเลยเหมือนกัน
+        </div>
+        <div class="touchtogonext-black">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen yellow-bg center-box" id="screenSad28" onclick="goToSad(29)">
+        <div class="overlay"></div>
+        <div class="center-text">
+            แต่ตรงนี้<br>
+            อย่างน้อยคุณก็ได้หยุดพัก<br>
+            และได้เห็นตัวเองชัดขึ้นอีกนิด
+        </div>
+        <div class="touchtogonext-black">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen yellow-bg center-box" id="screenSad29" onclick="goToSad(30)">
+        <div class="overlay"></div>
+        <div class="center-text">
+            บางทีพลังที่จะก้าวต่อ<br>
+            อาจไม่ต้องใช้แรงฮึดมากมายขนาดนั้น<br>
+            แค่กอดตัวเองแน่น ๆ ในวันที่ล้ม<br>
+            แล้วบอกว่า "ไม่เป็นไรนะ"<br>
+            เท่านี้ก็เพียงพอแล้วจริง ๆ
+        </div>
+        <div class="touchtogonext-black">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    </section>
+
+    <section class="screen yellow-bg center-box" id="screenSad30" onclick="goToSad(31)">
+        <div class="overlay"></div>
+        <div class="center-text">
+            ขอให้ความอุ่นใจจาง ๆ นี้<br>
+            ช่วยโอบกอดคุณไว้นานที่สุดเท่าที่จะทำได้<br>
+            และหากวันไหนโลกใจร้ายกับคุณขึ้นมาอีก<br>
+            กลับมาพักตรงนี้ได้เสมอนะ
+        </div>
+        <div class="touchtogonext-black">
+            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+        </div>
+    </section>
+
+    <section class="screen yellow-bg center-box" id="screenSad31">
+        <div class="overlay"></div>
+        <div class="center-text">
+            ขอบคุณที่พาหัวใจดวงนี้เดินทางมาจนจบ<br>
+            ขอบคุณที่อนุญาตให้เรานั่งข้าง ๆ ในเวลานี้<br>
+            หลังจากนี้...ขอให้โลกใบนี้ใจดีกับคุณ<br>
+            อย่างที่คุณควรได้รับนะ 🤍
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
