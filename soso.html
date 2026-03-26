@@ -1,333 +1,228 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Letter to you</title>
-    <link rel="stylesheet" href="style.css" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Noto+Serif+Thai:wght@100..900&display=swap"
-        rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letter to you</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&family=Noto+Serif+Thai:wght@100..900&display=swap" rel="stylesheet">
 </head>
-    
 <body>
-    <audio id="bgMusic" loop>
-        <source src="bg-music.mp3" type="audio/mpeg">
-    </audio>
 
-    <audio id="doorbellSound">
-        <source src="doorbell.mp3" type="audio/mpeg">
-    </audio>
+  <audio id="bgMusic" loop><source src="bg-music.mp3" type="audio/mpeg"></audio>
+  <audio id="doorbellSound"><source src="doorbell.mp3" type="audio/mpeg"></audio>
+
+  <div class="phone-frame">
 
     <section class="screen yellow-bg center-box active" id="screenSoso1" onclick="startMusic(); goToSoso(2)">
-        <div class="overlay"></div>
-        <div class="center-text">
-            รู้สึกเฉย ๆ ก็ไม่เป็นไรนะ<br>
-            บางวันเราก็แค่เป็นแบบนั้น<br>
-            บางทีความรู้สึกก็ไม่ได้ชัดเจน<br>
-            แค่ค่อย ๆ เป็นไป<br>
-            การไม่รู้สึกอะไรเป็นพิเศษ<br>
-            ก็เป็นความรู้สึกหนึ่งเหมือนกัน
-        </div>
-        <div class="touchtogonext-black">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="center-text">
+        รู้สึกเฉย ๆ ก็ไม่เป็นไรนะ<br>
+        บางวันเราก็แค่เป็นแบบนั้น<br>
+        บางทีความรู้สึกก็ไม่ได้ชัดเจน<br>
+        แค่ค่อย ๆ เป็นไป<br>
+        การไม่รู้สึกอะไรเป็นพิเศษ<br>
+        ก็เป็นความรู้สึกหนึ่งเหมือนกัน
+      </div>
+      <div class="touchtogonext-black"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen yellow-bg" id="screenSoso2">
-        <div class="overlay"></div>
-        <div class="content_Soso2">
-            <h1 class="soso_ask">
-                ถ้าให้ลองนึกดู<br>
-                มีอะไรเล็ก ๆ ที่ผ่านเข้ามาในใจคุณวันนี้บ้างไหม<br>
-                ไม่จำเป็นต้องสำคัญ แค่เป็นเรื่องธรรมดา ๆ ก็พอ
-            </h1>
-            <textarea id="sosoStory" rows="10" placeholder="พิมพ์เรื่องราวของคุณที่นี่..."></textarea>
-        </div>
-        <div class="actions">
-            <button class="next-btn-black-P3" onclick="saveSosoStoryAndNext()">ถัดไป</button>
-        </div>
+      <div class="overlay"></div>
+      <div class="content_Soso2">
+        <h1 class="soso_ask">
+          ถ้าให้ลองนึกดู<br>
+          มีอะไรเล็ก ๆ ที่ผ่านเข้ามาในใจคุณวันนี้บ้างไหม<br>
+          ไม่จำเป็นต้องสำคัญ แค่เป็นเรื่องธรรมดา ๆ ก็พอ
+        </h1>
+        <textarea id="sosoStory" placeholder="พิมพ์เรื่องราวของคุณที่นี่..."></textarea>
+      </div>
+      <div class="actions">
+        <button class="next-btn-black-P3" onclick="saveSosoStoryAndNext()">ถัดไป</button>
+      </div>
     </section>
 
     <section class="screen yellow-bg center-box" id="screenSoso3" onclick="goToSoso(4)">
-        <div class="overlay"></div>
-        <div class="center-text">
-            ขอบคุณที่เล่าให้ฟังนะ<br>
-            เรื่องเล็ก ๆ แบบนี้ก็มีความหมายเหมือนกัน<br>
-            บางทีความรู้สึกเฉย ๆ<br>
-            ก็แปลว่าเรากำลังพักอยู่<br>
-            ไม่ต้องเร่งไปทางไหนก็ได้
-        </div>
-        <div class="touchtogonext-black">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="center-text">
+        ขอบคุณที่เล่าให้ฟังนะ<br>
+        เรื่องเล็ก ๆ แบบนี้ก็มีความหมายเหมือนกัน<br>
+        บางทีความรู้สึกเฉย ๆ<br>
+        ก็แปลว่าเรากำลังพักอยู่<br>
+        ไม่ต้องเร่งไปทางไหนก็ได้
+      </div>
+      <div class="touchtogonext-black"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen yellow-bg" id="screenSoso4">
-        <div class="overlay"></div>
-        <div class="content_Soso3">
-            <h1 class="soso_asktoTell">
-                หากมีใครสักคน<br>
-                กำลังมีช่วงเวลาที่รู้สึกเฉย ๆ อยู่<br>
-                คุณอยากบอกอะไรกับเขาบ้างไหม
-            </h1>
-            <textarea id="sosoTell" rows="10" placeholder="พิมพ์คำตอบของคุณที่นี่..."></textarea>
-        </div>
-        <div class="actions">
-            <button class="next-btn-black-P3" onclick="saveSosoTellAndNext()">ถัดไป</button>
-        </div>
+      <div class="overlay"></div>
+      <div class="content_Soso3">
+        <h1 class="soso_asktoTell">
+          หากมีใครสักคน<br>
+          กำลังมีช่วงเวลาที่รู้สึกเฉย ๆ อยู่<br>
+          คุณอยากบอกอะไรกับเขาบ้างไหม
+        </h1>
+        <textarea id="sosoTell" placeholder="พิมพ์คำตอบของคุณที่นี่..."></textarea>
+      </div>
+      <div class="actions">
+        <button class="next-btn-black-P3" onclick="saveSosoTellAndNext()">ถัดไป</button>
+      </div>
     </section>
 
     <section class="screen yellow-bg center-box" id="screenSoso5" onclick="goToSoso(6)">
-        <div class="overlay"></div>
-        <div class="center-text">
-            ขอบคุณแทนคนคนนั้นด้วยนะ<br>
-            แค่มีใครสักคนเข้าใจว่า<br>
-            ความเฉย ๆ ก็ไม่ผิดอะไร<br>
-            มันก็ช่วยให้รู้สึกเบาลงได้แล้ว
-        </div>
-        <div class="touchtogonext-black">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="center-text">
+        ขอบคุณแทนคนคนนั้นด้วยนะ<br>
+        แค่มีใครสักคนเข้าใจว่า<br>
+        ความเฉย ๆ ก็ไม่ผิดอะไร<br>
+        มันก็ช่วยให้รู้สึกเบาลงได้แล้ว
+      </div>
+      <div class="touchtogonext-black"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen yellow-bg center-box" id="screenSoso6" onclick="goToSoso(7)">
-        <div class="overlay"></div>
-        <div class="center-text">
-            หลังจากนั้น<br>
-            คุณทั้งสองก็เดินต่อไปเรื่อย ๆ
-        </div>
-        <div class="touchtogonext-black">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="center-text">หลังจากนั้น<br>คุณทั้งสองก็เดินต่อไปเรื่อย ๆ</div>
+      <div class="touchtogonext-black"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen yellow-bg center-box" id="screenSoso7" onclick="goToSoso(8)">
-        <div class="overlay"></div>
-        <div class="center-text">
-            จนพบกับ กล่องสีแดงใบหนึ่ง<br>
-            ที่ดูเหมือนจะรอใครบางคนอยู่
-        </div>
-        <div class="touchtogonext-black">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="center-text">จนพบกับ กล่องสีแดงใบหนึ่ง<br>ที่ดูเหมือนจะรอใครบางคนอยู่</div>
+      <div class="touchtogonext-black"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen yellow-bg center-box" id="screenSoso8" onclick="goToSoso(9)">
-        <div class="overlay"></div>
-        <div class="center-text">
-            ตอนแรกทุกอย่างยังดูพร่าเลือนเล็กน้อย<br>
-            สีแดงนั้นค่อย ๆ ชัดขึ้นทีละนิด<br>
-            จนคุณมองเห็นช่องเล็ก ๆ อยู่ตรงกลาง
-        </div>
-        <div class="touchtogonext-black">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="center-text">
+        ตอนแรกทุกอย่างยังดูพร่าเลือนเล็กน้อย<br>สีแดงนั้นค่อย ๆ ชัดขึ้นทีละนิด<br>จนคุณมองเห็นช่องเล็ก ๆ อยู่ตรงกลาง
+      </div>
+      <div class="touchtogonext-black"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
-    <section class="screen" id="screenSoso9" onclick="goToSoso(10)">
-        <div class="touchtogonext-white-down">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
-    </section>
-
-    <section class="screen" id="screenSoso10" onclick="goToSoso(11)">
-        <div class="touchtogonext-white-down">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
-    </section>
-
-    <section class="screen" id="screenSoso11" onclick="goToSoso(12)">
-        <div class="touchtogonext-white-down">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
-    </section>
-
-    <section class="screen" id="screenSoso12" onclick="goToSoso(13)">
-        <div class="touchtogonext-white-down">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
-    </section>
+    <section class="screen" id="screenSoso9"  onclick="goToSoso(10)"><div class="touchtogonext-white-down"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div></section>
+    <section class="screen" id="screenSoso10" onclick="goToSoso(11)"><div class="touchtogonext-white-down"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div></section>
+    <section class="screen" id="screenSoso11" onclick="goToSoso(12)"><div class="touchtogonext-white-down"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div></section>
+    <section class="screen" id="screenSoso12" onclick="goToSoso(13)"><div class="touchtogonext-white-down"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div></section>
 
     <section class="screen center-box" id="screenSoso13" onclick="goToSoso(14)">
-        <div class="overlay"></div>
-        <div class="content_Good13">
-            ตอนนี้คุณเห็นมันชัดเจนแล้ว<br>
-            กล่องสีแดงใบนั้น<br>
-            ตั้งอยู่ตรงหน้าคุณจริง ๆ
-        </div>
-        <div class="touchtogonext-white-down">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="content_Good13">ตอนนี้คุณเห็นมันชัดเจนแล้ว<br>กล่องสีแดงใบนั้น<br>ตั้งอยู่ตรงหน้าคุณจริง ๆ</div>
+      <div class="touchtogonext-white-down"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen center-box" id="screenSoso14" onclick="goToSoso(15)">
-        <div class="overlay"></div>
-        <div class="content_Good13">
-            ใครบางคนที่ยืนอยู่ข้าง ๆ คุณ<br>
-            ค่อย ๆ ก้าวเข้าไปใกล้<br>
-            ในมือของน้อง<br>
-            มีกระดาษแผ่นเล็ก ๆ หนึ่งแผ่น
-        </div>
-        <div class="touchtogonext-white-down">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="content_Good13">ใครบางคนที่ยืนอยู่ข้าง ๆ คุณ<br>ค่อย ๆ ก้าวเข้าไปใกล้<br>ในมือของน้อง<br>มีกระดาษแผ่นเล็ก ๆ หนึ่งแผ่น</div>
+      <div class="touchtogonext-white-down"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen center-box" id="screenSoso15" onclick="goToSoso(16)">
-        <div class="overlay"></div>
-        <div class="content_Good13">
-            น้องไม่พูดอะไร <br>
-            แค่ก้าวเข้าไปใกล้ <br>
-            แล้วหย่อนจดหมายลงไปอย่างเบามือ
-        </div>
-        <div class="touchtogonext-white-down">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="content_Good13">น้องไม่พูดอะไร <br>แค่ก้าวเข้าไปใกล้ <br>แล้วหย่อนจดหมายลงไปอย่างเบามือ</div>
+      <div class="touchtogonext-white-down"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen center-box" id="screenSoso16" onclick="goToSoso(17)">
-        <div class="overlay"></div>
-        <div class="touchtogonext-white-down">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="touchtogonext-white-down"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen center-box eye-closed-bg" id="screenSoso17" onclick="goToSoso(18)">
-        <div class="overlay"></div>
-        <div class="touchtogonext-white-down">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="touchtogonext-white-down"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen center-box wake-room-bg" id="screenSoso18" onclick="playDoorbell(() => goToSoso(19))">
-        <div class="overlay"></div>
-        <div class="content_Good18">
-            แสงแดดยามเช้าส่องผ่านผ้าม่านบาง ๆ<br>
-            คุณค่อย ๆ ลืมตาขึ้นมา
-        </div>
-        <div class="touchtogonext-white-down-room">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="content_Good18">แสงแดดยามเช้าส่องผ่านผ้าม่านบาง ๆ<br>คุณค่อย ๆ ลืมตาขึ้นมา</div>
+      <div class="touchtogonext-white-down-room"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen center-box wake-room-bg" id="screenSoso19" onclick="goToSoso(20)">
-        <div class="overlay"></div>
-        <div class="content_Good18">
-            เสียงที่คุ้นเคยดังขึ้นอีกครั้ง<br>
-            คุณขมวดคิ้วนิดหนึ่ง <br>
-            ก่อนจะลุกขึ้นจากเตียง<br>
-            แล้วเดินไปตามเสียงนั้น
-        </div>
-        <div class="touchtogonext-white-down-room">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="content_Good18">เสียงที่คุ้นเคยดังขึ้นอีกครั้ง<br>คุณขมวดคิ้วนิดหนึ่ง <br>ก่อนจะลุกขึ้นจากเตียง<br>แล้วเดินไปตามเสียงนั้น</div>
+      <div class="touchtogonext-white-down-room"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen center-box" id="screenSoso20" onclick="goToSoso(21)">
-        <div class="overlay"></div>
-        <div class="content_Good20">
-            คุณหยุดอยู่หน้าประตู<br>
-            แล้วสูดลมหายใจเข้าอย่างลึก ๆ<br>
-            ก่อนจะเปิดประตูออกไป...
-        </div>
-        <div class="touchtogonext-white-down-room">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="content_Good20">คุณหยุดอยู่หน้าประตู<br>แล้วสูดลมหายใจเข้าอย่างลึก ๆ<br>ก่อนจะเปิดประตูออกไป...</div>
+      <div class="touchtogonext-white-down-room"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
-    <section class="screen center-box letter-1" id="screenSoso21" onclick="goToSoso(22)"></section>
-    <section class="screen center-box letter-2" id="screenSoso22" onclick="goToSoso(23)"></section>
-    <section class="screen center-box letter-3" id="screenSoso23" onclick="goToSoso(24)"></section>
+    <section class="screen center-box letter-1" id="screenSoso21" onclick="goToSoso(22)">
+      <div class="touchtogonext-black">
+        <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+      </div>
+    </section>
+    <section class="screen center-box letter-2" id="screenSoso22" onclick="goToSoso(23)">
+      <div class="touchtogonext-black">
+        <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+      </div>
+    </section>
+    <section class="screen center-box letter-3" id="screenSoso23" onclick="goToSoso(24)">
+      <div class="touchtogonext-black">
+        <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
+      </div>
+    </section>
 
     <section class="screen center-box letter-4" id="screenSoso24" onclick="goToSoso(25)">
-        <div class="content_Good24">แตะเพื่ออ่านจดหมาย</div>
+      <div class="content_Good24">แตะเพื่ออ่านจดหมาย</div>
     </section>
 
     <section class="screen center-box letter-bg" id="screenSoso25" onclick="goToSoso(26)">
-        <div class="letter-container">
-            <p id="letterContent"></p>
-            <button class="next-btn-black-mood" onclick="goToSoso(26)">ถัดไป</button>
-        </div>
+      <div class="letter-container">
+        <p id="letterContent"></p>
+        <button class="next-btn-black-mood" onclick="goToSoso(26)">ถัดไป</button>
+      </div>
     </section>
 
     <section class="screen yellow-bg center-box" id="screenSoso26" onclick="goToSoso(27)">
-        <div class="overlay"></div>
-        <div class="center-text">
-            คุณถือจดหมายใบนั้นไว้อยู่ครู่หนึ่ง<br>
-            ปล่อยให้ความเรียบง่าย...<br>
-            ค่อย ๆ ซึมผ่านใจไปช้า ๆ
-        </div>
-        <div class="touchtogonext-black">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="center-text">คุณถือจดหมายใบนั้นไว้อยู่ครู่หนึ่ง<br>ปล่อยให้ความเรียบง่าย...<br>ค่อย ๆ ซึมผ่านใจไปช้า ๆ</div>
+      <div class="touchtogonext-black"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen yellow-bg center-box" id="screenSoso27" onclick="goToSoso(28)">
-        <div class="overlay"></div>
-        <div class="center-text">
-            โลกข้างนอกยังคงหมุนไปจังหวะเดิม<br>
-            ไม่ได้มีอะไรหวือหวา<br>
-            และเวลาก็ยังคงเดินไปเรื่อย ๆ
-        </div>
-        <div class="touchtogonext-black">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="center-text">โลกข้างนอกยังคงหมุนไปจังหวะเดิม<br>ไม่ได้มีอะไรหวือหวา<br>และเวลาก็ยังคงเดินไปเรื่อย ๆ</div>
+      <div class="touchtogonext-black"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen yellow-bg center-box" id="screenSoso28" onclick="goToSoso(29)">
-        <div class="overlay"></div>
-        <div class="center-text">
-            แต่ตรงนี้...<br>
-            อย่างน้อยคุณก็ได้หยุดพัก<br>
-            และเห็นว่าความ "ธรรมดา"<br>
-            ก็สบายใจดีเหมือนกันนะ
-        </div>
-        <div class="touchtogonext-black">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="center-text">แต่ตรงนี้...<br>อย่างน้อยคุณก็ได้หยุดพัก<br>และเห็นว่าความ "ธรรมดา"<br>ก็สบายใจดีเหมือนกันนะ</div>
+      <div class="touchtogonext-black"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen yellow-bg center-box" id="screenSoso29" onclick="goToSoso(30)">
-        <div class="overlay"></div>
-        <div class="center-text">
-            ไม่ต้องพยายามให้มีความสุขจนล้น<br>
-            ไม่ต้องบีบคั้นให้ต้องรู้สึกอะไร<br>
-            แค่ปล่อยให้ชีวิตมัน "ดำเนิน" ไป...<br>
-            เท่านี้ก็ดีพอแล้วจริง ๆ
-        </div>
-        <div class="touchtogonext-black">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="center-text">
+        ไม่ต้องพยายามให้มีความสุขจนล้น<br>ไม่ต้องบีบคั้นให้ต้องรู้สึกอะไร<br>แค่ปล่อยให้ชีวิตมัน "ดำเนิน" ไป...<br>เท่านี้ก็ดีพอแล้วจริง ๆ
+      </div>
+      <div class="touchtogonext-black"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen yellow-bg center-box" id="screenSoso30" onclick="goToSoso(31)">
-        <div class="overlay"></div>
-        <div class="center-text">
-            ขอให้ความสบายใจจาง ๆ นี้<br>
-            อยู่เป็นเพื่อนคุณไปเรื่อย ๆ<br>
-            ไม่ต้องชัดเจนมาก...<br>
-            แค่รู้สึกเบา ๆ ก็พอ
-        </div>
-        <div class="touchtogonext-black">
-            <p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p>
-        </div>
+      <div class="overlay"></div>
+      <div class="center-text">
+        ขอให้ความสบายใจจาง ๆ นี้<br>อยู่เป็นเพื่อนคุณไปเรื่อย ๆ<br>ไม่ต้องชัดเจนมาก...<br>แค่รู้สึกเบา ๆ ก็พอ
+      </div>
+      <div class="touchtogonext-black"><p>"แตะที่ใดก็ได้เพื่อไปต่อ"</p></div>
     </section>
 
     <section class="screen yellow-bg center-box" id="screenSoso31">
-        <div class="overlay"></div>
-        <div class="center-text">
-            ขอบคุณที่แวะมาทักทายใจตัวเองนะ<br>
-            หลังจากนี้...ขอให้จังหวะชีวิตของคุณ<br>
-            ไหลลื่นและสงบในแบบที่คุณชอบนะ 🍃
-        </div>
+      <div class="overlay"></div>
+      <div class="center-text">
+        ขอบคุณที่แวะมาทักทายใจตัวเองนะ<br>หลังจากนี้...ขอให้จังหวะชีวิตของคุณ<br>ไหลลื่นและสงบในแบบที่คุณชอบนะ 🍃
+      </div>
     </section>
 
-    <script src="script.js"></script>
-</body>
+  </div><!-- /phone-frame -->
 
+  <script src="script.js"></script>
+</body>
 </html>
