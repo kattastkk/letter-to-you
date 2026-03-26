@@ -1,38 +1,58 @@
-* {
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
-body, html {
+html, body {
   width: 100%;
   height: 100%;
   font-family: 'Noto Serif Thai', serif;
+  background-color: #1a1a1a;
 }
 
+/* Page fade-in / fade-out */
 body {
   opacity: 1;
-  transition: opacity 0.8s ease;
+  transition: opacity 2.0s ease;
 }
-
 body.fade-out {
   opacity: 0;
 }
 
- .screen {
-  position: absolute;   /* จาก relative → absolute */
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100vh;
+/* ============================================================
+   PHONE FRAME  — centres a 390×844 container on any screen
+   ============================================================ */
+.phone-frame {
+  position: relative;
+  width: 390px;
+  height: 100dvh;
+  max-height: 844px;
+  margin: 0 auto;
   overflow: hidden;
+  background: #fff;
+  box-shadow: 0 0 60px rgba(0,0,0,0.5);
+}
 
+@media (max-height: 500px) {
+  .phone-frame { max-height: none; height: 100dvh; }
+}
+
+/* ============================================================
+   SCREEN SYSTEM
+   ============================================================ */
+.screen {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   opacity: 0;
   pointer-events: none;
-
-  transition: opacity 3.0s ease;
+  transition: opacity  2.0s ease;
 }
 
 .screen.active {
@@ -40,1361 +60,603 @@ body.fade-out {
   pointer-events: auto;
 }
 
-.yellow-bg {
-  background-image: url("yellow_bg.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+/* ============================================================
+   BACKGROUNDS
+   ============================================================ */
+.yellow-bg       { background: url("yellow_bg.jpeg") center/cover no-repeat; }
+.beach-plain-bg  { background: url("beach.jpeg") center/cover; }
+.beach-bg        { background: url("beach-oval-white.jpeg") center/cover; }
+.mountain-bg     { background: url("mountain-white.jpeg") center/cover; }
+.mountain-plain-bg { background: url("mountain.jpeg") center/cover; }
+.garden-bg       { background: url("garden-white.jpeg") center/cover; }
+.garden-plain-bg { background: url("garden.jpeg") center/cover; }
+.eye-closed-bg   { background: url("closed-eye.jpeg") center/cover; }
+.wake-room-bg    { background: url("room-wake.jpeg") center/cover; }
+.letter-bg       { background: url("yellow_bg.jpeg") center/cover; }
+.letter-1        { background: url("letter-1.jpeg") center/cover; }
+.letter-2        { background: url("letter-2.jpeg") center/cover; }
+.letter-3        { background: url("letter-3.jpeg") center/cover; }
+.letter-4        { background: url("letter-4.jpeg") center/cover; }
 
-.beach-plain-bg {
-  background-image: url("beach.jpeg");
-  /* background-image: url("beach-rec-white.jpeg"); */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+#screen1  { background: url("opening.jpeg") center/cover; }
+#screen6,
+#screen7  { background: url("ไฟสว่างกลาง.jpeg") center/cover; }
+#screen12 { background: url("door.jpeg") center/cover; }
 
-.beach-bg {
-  background-image: url("beach-oval-white.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+#screenGood20,
+#screenSoso20,
+#screenSad20 { background: url("door.jpeg") center/cover; }
 
-
-.mountain-bg {
-  background-image: url("mountain-white.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.mountain-plain-bg {
-  background-image: url("mountain.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.garden-bg {
-  background-image: url("garden-white.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.garden-plain-bg {
-  background-image: url("garden.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-#screen1 {
-  background-image: url("opening.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-}
-#screen1 .content {
-  transform: translateY(25px);
-}
-
-/* .slider {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.slider img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.slider img.active {
-  opacity: 1;
-} */
-
+/* ============================================================
+   OVERLAY (non-interactive darkening layer)
+   ============================================================ */
 .overlay { pointer-events: none; }
-/* .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0);
-  z-index: 0;
-} */
 
-.content_P1 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(255, 255, 255);
-  padding: 20px;
-  top: 30%;
-  transform: translateY(5px)
+/* ============================================================
+   BLINK ANIMATION
+   ============================================================ */
+@keyframes softBlink {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 1;   }
 }
+
+/* ============================================================
+   "TOUCH TO CONTINUE" hints  (pinned to bottom)
+   ============================================================ */
+.touchtogonext-white,
+.touchtogonext-white-down,
+.touchtogonext-white-down-room {
+  position: absolute;
+  bottom: 54px;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  color: #fff;
+  animation: softBlink 3s ease-in-out infinite;
+  z-index: 10;
+}
+
+.touchtogonext-black {
+  position: absolute;
+  bottom: 54px;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  color: #000;
+  animation: softBlink 3s ease-in-out infinite;
+  z-index: 10;
+}
+
+/* ============================================================
+   BUTTONS  (shared)
+   ============================================================ */
+button {
+  font-family: 'Noto Serif Thai', serif;
+  cursor: pointer;
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  transition: background-color 0.3s, transform 0.15s;
+}
+/* button:active { transform: scale(0.97); } */
 
 .next-btn-pink-P1 {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 30px;
+  padding: 10px 28px;
   background-color: #ffaeaecc;
-  color: rgb(255, 255, 255);
-  transition: background-color 0.3s;
-  font-family: 'Noto Serif Thai', serif;
+  color: #fff;
 }
-
-.next-btn:hover {
-  background-color: #ffffff;
+.next-btn-black-P2,
+.next-btn-black-P3,
+.next-btn-black-P5 {
+  padding: 10px 28px;
+  background-color: #000000cc;
+  color: #fff;
 }
-
-/* .screen {
-  display: none;
-}
-
-.screen.active {
+.next-btn-black-mood {
   display: block;
-} */
+  margin: 20px auto 0;
+  padding: 10px 28px;
+  width: 110px;
+  text-align: center;
+  background-color: #000000cc;
+  color: #fff;
+}
 
+/* ============================================================
+   SCREEN 1 — opening / title
+   ============================================================ */
+  .content_P1 {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 32px 24px 184px 24px; /* <--- เปลี่ยนบรรทัดนี้: เพิ่ม padding ด้านล่างเป็น 100px (บน ขวา ล่าง ซ้าย) */
+    gap: 10px;
+  }
+.content_P1 h1        { font-size: 26px; font-weight: 600; }
+.content_P1 .subtitle { font-size: 15px; line-height: 1.9; }
 
-
+/* "actions" row — general bottom-pinned button wrapper */
 .actions {
+  position: absolute;
+  bottom: 100px;
+  width: 100%;
   display: flex;
   justify-content: center;
-  transform: translateY(210px)
 }
 
-
-
-.content_P2 .caution {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 20px;
-  transform: translateY(190px);
-  font-family: 'Noto Serif Thai', serif;
-}
-
-.content_P2 .subtitle {
+/* ============================================================
+   SCREEN 2 — caution
+   ============================================================ */
+.content_P2 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  z-index: 1;
   text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 20px;
-  top: 30%;
-  transform: translateY(160px);
-  line-height: 35px;
+  padding: 32px 24px;
+  gap: 12px;
 }
+.content_P2 .caution  { font-size: 20px; font-weight: 600; color: #000; }
+.content_P2 .subtitle { font-size: 15px; color: #000; line-height: 1.9; }
 
-
-.next-btn-black-P2 {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 30px;
-  background-color: #000000cc;
-  color: rgb(255, 255, 255);
-  transition: background-color 0.3s;
-  font-family: 'Noto Serif Thai', serif;
-}
-
-@keyframes softBlink {
-  0%   { opacity: 0.3; }
-  50%  { opacity: 1; }
-  100% { opacity: 0.3; }
-}
-
-
-
-.content_P3 .name_ask {
-  position: relative;
-  z-index: 1;
+/* ============================================================
+   SCREEN 3 & 4 — name / age input
+   ============================================================ */
+.content_P3,
+.content_P4 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  transform: translateY(260px);
-  font-weight: 400;
-  font-size: medium;
+  padding: 32px 24px;
+  gap: 20px;
 }
+.content_P3 .name_ask,
+.content_P4 .age_ask { font-weight: 400; font-size: 16px; color: #000; }
 
-.next-btn-black-P3 {
-  margin-top: 0px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 30px;
-  background-color: #000000cc;
-  color: rgb(255, 255, 255);
-  transition: background-color 0.3s;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(0px) ;
-}
-
-#userName {
-  display: block;        /* สำคัญ */
-  margin: 120px auto 0;   /* บน | ซ้ายขวา | ล่าง */
-
+#userName, #age,
+#beachReason, #mountainReason, #gardenReason {
+  display: block;
+  width: 260px;
   padding: 12px 16px;
-  width: 250px;
-
-  font-size: 16px;
+  font-size: 15px;
   border-radius: 20px;
   border: 1px solid #ccc;
-
   text-align: center;
   font-family: 'Noto Serif Thai', serif;
-  transform: translateY(150px)
+  background: rgba(255,255,255,0.85);
 }
 
-
-
-.content_P4 .age_ask {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  transform: translateY(260px);
-  font-weight: 400;
-  font-size: medium;
-}
-
-#age{
-  display: block;        /* สำคัญ */
-  margin: 120px auto 0;   /* บน | ซ้ายขวา | ล่าง */
-
-  padding: 12px 16px;
-  width: 250px;
-
-  font-size: 16px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-
-  text-align: center;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(150px)
-}
-
-
+/* ============================================================
+   SCREEN 5 — intro poem
+   ============================================================ */
 .content_P5 {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  transform: translateY(260px);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
+  padding: 32px 24px;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #000;
 }
 
-.next-btn-black-P5 {
-  margin-top: 0px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  text-decoration: none;
-  border: none;
-  border-radius: 30px;
-  background-color: #000000cc;
-  color: rgb(255, 255, 255);
-  transition: background-color 0.3s;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(100px);
-
-}
-
-#screen6 {
-  background-image: url("ไฟสว่างกลาง.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-}
-
+/* ============================================================
+   SCREEN 6 — dark touch screen
+   ============================================================ */
 .content_P6 {
   position: absolute;
-  bottom: 100px;
+  bottom: 80px;
   width: 100%;
   text-align: center;
-
   font-size: 14px;
-  color: rgb(255, 255, 255);
-  font-family: 'Noto Serif Thai', serif;
+  color: #fff;
   animation: softBlink 3s ease-in-out infinite;
 }
+.fade-delay { animation: softBlink 3s ease-in-out infinite; }
 
-#screen7 {
-  background-image: url("ไฟสว่างกลาง.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-}
-
-.content_P7 .subtitle{
+/* ============================================================
+   SCREEN 7 — walking narration
+   ============================================================ */
+.content_P7 .subtitle {
   position: absolute;
-  top: 20%;
+  top: 30%;
+  left: 0;
   width: 100%;
+  transform: translateY(-50%);
   text-align: center;
-
-  font-size: 14px;
-  color: rgb(255, 255, 255);
-  font-family: 'Noto Serif Thai', serif;
-  line-height: 1.8;
+  font-size: 15px;
+  color: #fff;
+  line-height: 1.9;
+  padding: 0 28px;
 }
 
-.touchtogonext-white {
+/* ============================================================
+   SCREENS 8–11 — story narration
+   ============================================================ */
+.content_P8, .content_P9, .content_P10, .content_P11,
+.content_P16, .content_P17 {
   position: absolute;
-  bottom: 100px;
-  width: 100%;
-  text-align: center;
-
-  font-size: 14px;
-  color: rgb(255, 255, 255);
-  font-family: 'Noto Serif Thai', serif;
-  animation: softBlink 3s ease-in-out infinite;
-}
-
-.touchtogonext-black {
-  position: absolute;
-  bottom: 100px;
-  width: 100%;
-  text-align: center;
-
-  font-size: 14px;
-  color: rgb(0, 0, 0);
-  font-family: 'Noto Serif Thai', serif;
-  animation: softBlink 3s ease-in-out infinite;
-}
-
-
-
-.content_P8 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  /* transform: translateY(260px); */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
-}
-
-.touchtogonext-black {
-  position: absolute;
-  bottom: 100px;
   width: 100%;
+  padding: 28px;
   text-align: center;
-
-  font-size: 14px;
-  color: rgb(0, 0, 0);
-  font-family: 'Noto Serif Thai', serif;
-  animation: softBlink 3s ease-in-out infinite;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #000;
 }
 
-
-
-.content_P9 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  /* transform: translateY(260px); */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
-}
-
-
-
-.content_P10 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  /* transform: translateY(260px); */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
-}
-
-
-
-.content_P11 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  /* transform: translateY(260px); */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
-}
-
-#screen12 {
-  background-image: url("door.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-
-
+/* ============================================================
+   SCREEN 13 — animal choice
+   ============================================================ */
 .content_P13 {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  top: 28%;
+  width: 100%;
+  padding: 0 28px;
   text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  transform: translateY(230px);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #000;
 }
 
 .button_1 {
-  display: flex;
-  justify-content: center;
-  transform: translateY(180px)
-}
-
-.button-dog {
-  margin-top: 0px;
-  padding: 10px 50px;
-  font-size: 16px;
-  cursor: pointer;
-  text-decoration: none;
-  border: none;
-  border-radius: 30px;
-  background-color: #000000cc;
-  color: rgb(255, 255, 255);
-  transition: background-color 0.3s;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(60px)
-  
-}
-
-.button_2 {
-  display: flex;
-  justify-content: center;
-  transform: translateY(160px)
-}
-
-.button-cat {
-  margin-top: 0px;
-  padding: 10px 50px;
-  font-size: 16px;
-  cursor: pointer;
-  text-decoration: none;
-  border: none;
-  border-radius: 30px;
-  background-color: #000000cc;
-  color: rgb(255, 255, 255);
-  transition: background-color 0.3s;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(90px)
-}
-
-.content_dog {
-  width: 100%;
-  height: 100vh;  /* สั่งให้สูงเต็มจอ 100% ของ Viewport Height */
-  position: relative;
-  background-image: url("dog-door.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.content_dog .subtitle {
   position: absolute;
-  top: 28%;
+  width: 100%;
+  top: 45%;
+  display: flex;
+  justify-content: center;
+}
+.button_2 {
+  position: absolute;
+  width: 100%;
+  top: 53%;
+  display: flex;
+  justify-content: center;
+}
+
+.button-dog, .button-cat {
+  padding: 10px 50px;
+  background-color: #000000cc;
+  color: #fff;
+}
+
+/* ============================================================
+   SCREEN 14 & 15 — dog / cat
+   ============================================================ */
+.content_dog {
+  width: 100%; height: 100%; position: relative;
+  background: url("dog-door.jpeg") center/cover;
+}
+.content_cat {
+  width: 100%; height: 100%; position: relative;
+  background: url("cat-door.jpeg") center/cover;
+}
+
+.content_dog .subtitle,
+.content_cat .subtitle {
+  position: absolute;
+  top: 30%;
   width: 100%;
   text-align: center;
-
-  font-size: 16px;
-  color: rgb(0, 0, 0);
-  font-family: 'Noto Serif Thai', serif;
-  line-height: 1.8;
-
+  font-size: 15px;
+  color: #000;
+  line-height: 1.9;
+  padding: 0 28px;
 }
 
 .button_4 {
-  /* สั่งให้ลอยเพื่อไม่ให้กินพื้นที่จนหน้ายาว */
-  position: absolute; 
-  bottom: 52%;        /* ห่างจากขอบล่าง 50% */
-  left: 50%;          /* อยู่กึ่งกลางซ้ายขวา */
-  transform: translateX(-50%); /* จัดกึ่งกลางให้เป๊ะ */
-
-  /* สไตล์ปุ่มเดิมของคุณ */
-  padding: 10px 50px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 30px;
-  background-color: #000000cc;
-  color: rgb(255, 255, 255);
-  font-family: 'Noto Serif Thai', serif;
-}
-
-.content_cat {
-  width: 100%;
-  height: 100vh;  /* สั่งให้สูงเต็มจอ 100% ของ Viewport Height */
-  position: relative;
-  background-image: url("cat-door.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.content_cat .subtitle {
   position: absolute;
-  top: 28%;
-  width: 100%;
-  text-align: center;
-
-  font-size: 16px;
-  color: rgb(0, 0, 0);
-  font-family: 'Noto Serif Thai', serif;
-  line-height: 1.8;
-
-}
-
-
-
-.content_P16 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  /* transform: translateY(260px); */
-  top: 50%;
+  bottom: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
+  transform: translateX(-50%);
+  padding: 10px 50px;
+  background-color: #000000cc;
+  color: #fff;
 }
 
-
-
-.content_P17 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
-}
-
-
-
-
+/* ============================================================
+   SCREEN 18 — choose place
+   ============================================================ */
 .content_P18 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  top: 35%;
+  position: absolute;
+  top: 40%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 0 28px;
+  text-align: center;
+  font-size: 15px;
+  color: #000;
 }
-
-
 
 .actions-2 {
+  position: absolute;
+  top: 45%;
+  width: 100%;
   display: flex;
-  flex-direction: column; /* สั่งให้ปุ่มเรียงลงมาเป็นแนวตั้ง */
-  align-items: center;    /* จัดกึ่งกลางแนวนอน (สำคัญมาก!) */
-  justify-content: flex-start; /* เริ่มเรียงจากข้างบนลงล่าง */
-  
-  /* อยากให้ลงมาแค่ไหน ปรับตัวเลขตรงนี้ครับ */
-  padding-top: 35vh; /* 50vh คือครึ่งหนึ่งของความสูงหน้าจอ (ลงมาเยอะๆ) */
-  
-  /* ระยะห่างระหว่างปุ่ม */
-  gap: 10px; 
-  
-  /* ทำให้กล่องนี้เต็มจอ เพื่อให้จัดตำแหน่งได้ */
-  height: 100vh; 
-  box-sizing: border-box; /* กันไม่ให้ padding ดันจนจอเกิน */
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 90px;
+  gap: 12px;
 }
 
 .button-beach, .button-mountain, .button-garden {
-  padding: 10px 50px;
-  text-align: center;
+  padding: 10px 0;
   width: 200px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 30px;
+  text-align: center;
   background-color: #000000cc;
-  color: white;
-  transition: background-color 0.3s;
-  font-family: 'Noto Serif Thai', serif;
-  
-  /* ไม่ต้องใส่ top, position แล้ว เพราะแม่จัดการให้ */
+  color: #fff;
 }
 
-
-.content_P19 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
+/* ============================================================
+   BEACH / MOUNTAIN / GARDEN NARRATIVE SCREENS
+   ============================================================ */
+.content_P19, .content_P20,
+.content_P22, .content_P23,
+.content_P24, .content_P25 {
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
-}
-
-
-
-
-.content_P20 {
-  position: relative;
-  z-index: 1;
+  width: 100%;
+  padding: 28px;
   text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #000;
 }
 
-
-
-.content_P21 .reason_ask_beach {
-  position: relative;
-  /* z-index: 1; */
+/* Screen 21 — place reason input */
+.content_P21 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  gap: 20px;
   text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  transform: translateY(300px);
-  font-weight: 400;
-  font-size: medium;
 }
-
-.content_P21 .reason_ask_mountain {
-  position: relative;
-  /* z-index: 1; */
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  transform: translateY(290px);
-  font-weight: 400;
-  font-size: medium;
-}
-
+.content_P21 .reason_ask_beach,
+.content_P21 .reason_ask_mountain,
 .content_P21 .reason_ask_garden {
-  position: relative;
-  /* z-index: 1; */
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  transform: translateY(290px);
   font-weight: 400;
-  font-size: medium;
-}
-
-.next-btn-black-P21 {
-  z-index: 2;
-  opacity: 1;
-  /* margin-top: 0px; */
-  padding: 10px 20px;
   font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 30px;
-  background-color: #000000;
-  color: rgb(255, 255, 255);
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(30px);
-}
-
-#beachReason{
-  display: block;        /* สำคัญ */
-  margin: 120px auto 0;   /* บน | ซ้ายขวา | ล่าง */
-
-  padding: 12px 16px;
-  width: 250px;
-
-  font-size: 16px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-
-  text-align: center;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(190px)
-}
-
-#mountainReason{
-  display: block;        /* สำคัญ */
-  margin: 120px auto 0;   /* บน | ซ้ายขวา | ล่าง */
-
-  padding: 12px 16px;
-  width: 250px;
-
-  font-size: 16px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-
-  text-align: center;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(190px)
-}
-
-#gardenReason{
-  display: block;        /* สำคัญ */
-  margin: 120px auto 0;   /* บน | ซ้ายขวา | ล่าง */
-
-  padding: 12px 16px;
-  width: 250px;
-
-  font-size: 16px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-
-  text-align: center;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(190px)
+  color: #000;
 }
 
 .actions_rb {
   position: absolute;
+  bottom: 100px;
   left: 50%;
-  transform: translate(-50%, 230px);
+  transform: translateX(-50%);
 }
 
-
-
-
-
-.content_P22 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
-}
-
-
-
-.content_P23 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
-}
-
-
-
-.content_P24 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
-}
-
-
-
-.content_P25 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  /* transform: translateY(260px); */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
-}
-
-
-
+/* Screen 26 — mood choice */
 .content_P26 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  top: 35%;
+  position: absolute;
+  top: 40%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: 0 28px;
+  text-align: center;
+  font-size: 15px;
+  color: #000;
 }
 
 .actions-3 {
+  position: absolute;
+  top: 45%;
+  width: 100%;
   display: flex;
-  flex-direction: column; /* สั่งให้ปุ่มเรียงลงมาเป็นแนวตั้ง */
-  align-items: center;    /* จัดกึ่งกลางแนวนอน (สำคัญมาก!) */
-  justify-content: flex-start; /* เริ่มเรียงจากข้างบนลงล่าง */
-  
-  /* อยากให้ลงมาแค่ไหน ปรับตัวเลขตรงนี้ครับ */
-  padding-top: 35vh; /* 50vh คือครึ่งหนึ่งของความสูงหน้าจอ (ลงมาเยอะๆ) */
-  
-  /* ระยะห่างระหว่างปุ่ม */
-  gap: 10px; 
-  
-  /* ทำให้กล่องนี้เต็มจอ เพื่อให้จัดตำแหน่งได้ */
-  height: 100vh; 
-  box-sizing: border-box; /* กันไม่ให้ padding ดันจนจอเกิน */
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 90px;
+  gap: 12px;
 }
 
 .button-good, .button-soso, .button-sad {
-  padding: 10px 50px;
-  text-align: center;
+  padding: 10px 0;
   width: 225px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 30px;
+  text-align: center;
   background-color: #000000cc;
-  color: white;
-  transition: background-color 0.3s;
-  font-family: 'Noto Serif Thai', serif;
-  
-  /* ไม่ต้องใส่ top, position แล้ว เพราะแม่จัดการให้ */
+  color: #fff;
 }
 
-
-
-
-.next-btn-black-P3 {
-  margin-top: 0px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 30px;
-  background-color: #000000cc;
-  color: rgb(255, 255, 255);
-  transition: background-color 0.3s;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(0px);
-}
-
-.content_Good1 {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.8;
-}
-
-
-.content_Good2 .good_ask {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  transform: translateY(200px);
-  font-weight: 400;
-  font-size: medium;
-}
-
-.content_Soso2 .soso_ask {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  transform: translateY(210px);
-  font-weight: 400;
-  font-size: medium;
-}
-
-.content_Sad2 .sad_ask {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  transform: translateY(210px);
-  font-weight: 400;
-  font-size: medium;
-}
-
-#goodStory {
-  display: block;    
-  margin: 120px auto 0;   
-  padding: 12px 16px;
-  width: 250px;
-  height:  150px;
-  font-size: 16px;
-  border-radius: 16px;
-  border: 1px solid #ccc;
-  text-align: center;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(100px)
-}
-
-/* ตอนยังว่าง */
-#goodStory:placeholder-shown {
-  padding-top: 60px;
-  font-family: 'Noto Serif Thai', serif;
-}
-
-/* ตอนเริ่มพิมพ์ */
-#goodStory:not(:placeholder-shown) {
-  padding-top: 16px;
-  text-align: left;
-  font-family: 'Noto Serif Thai', serif;
-}
-
-
-#sosoStory {
-  display: block;    
-  margin: 120px auto 0;   
-  padding: 12px 16px;
-  width: 250px;
-  height:  150px;
-  font-size: 16px;
-  border-radius: 16px;
-  border: 1px solid #ccc;
-  text-align: center;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(100px)
-}
-
-/* ตอนยังว่าง */
-#sosoStory:placeholder-shown {
-  padding-top: 60px;
-  font-family: 'Noto Serif Thai', serif;
-}
-
-/* ตอนเริ่มพิมพ์ */
-#sosoStory:not(:placeholder-shown) {
-  padding-top: 16px;
-  text-align: left;
-  font-family: 'Noto Serif Thai', serif;
-}
-
-#sadStory {
-  display: block;    
-  margin: 120px auto 0;   
-  padding: 12px 16px;
-  width: 250px;
-  height:  150px;
-  font-size: 16px;
-  border-radius: 16px;
-  border: 1px solid #ccc;
-  text-align: center;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(100px)
-}
-
-/* ตอนยังว่าง */
-#sadStory:placeholder-shown {
-  padding-top: 60px;
-  font-family: 'Noto Serif Thai', serif;
-}
-
-/* ตอนเริ่มพิมพ์ */
-#sadStory:not(:placeholder-shown) {
-  padding-top: 16px;
-  text-align: left;
-  font-family: 'Noto Serif Thai', serif;
-}
-
+/* ============================================================
+   GOOD / SOSO / SAD SCREENS
+   ============================================================ */
 .center-box {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  justify-content: center;
 }
 
 .center-text {
+  width: 100%;
   text-align: center;
-  line-height: 1.8;
-  padding: 20px;
-  z-index: 1; /* กัน overlay */
-}
-
-.content_Good3 .good_asktoTell {
-  position: relative;
+  line-height: 1.9;
+  padding: 24px 28px;
+  font-size: 15px;
+  color: #000;
   z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  transform: translateY(200px);
-  font-weight: 400;
-  font-size: medium;
 }
 
-.content_Soso3 .soso_asktoTell {
-  position: relative;
-  z-index: 1;
+/* Screen 1 — mood acknowledgement */
+.content_Good1,
+.content_Soso1,
+.content_Sad1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 28px;
   text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  transform: translateY(210px);
-  font-weight: 400;
-  font-size: medium;
-  line-height: 1.6 ;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #000;
 }
 
+/* Screen 2 — story input */
+.content_Good2,
+.content_Soso2,
+.content_Sad2 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  gap: 16px;
+  text-align: center;
+}
+
+.content_Good2 .good_ask,
+.content_Soso2 .soso_ask,
+.content_Sad2 .sad_ask {
+  font-weight: 400;
+  font-size: 15px;
+  color: #000;
+  line-height: 1.7;
+}
+
+/* Screen 4 (tell input) */
+.content_Good3,
+.content_Soso3,
+.content_Sad3 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  gap: 16px;
+  text-align: center;
+}
+
+.content_Good3 .good_asktoTell,
+.content_Soso3 .soso_asktoTell,
 .content_Sad3 .sad_asktoTell {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  padding: 5px;
-  transform: translateY(210px);
   font-weight: 400;
-  font-size: medium;
-  line-height: 1.6 ;
+  font-size: 15px;
+  color: #000;
+  line-height: 1.7;
 }
 
-#goodTell {
-  display: block;    
-  margin: 120px auto 0;   
+/* Textareas */
+#goodStory, #sosoStory, #sadStory,
+#goodTell,  #sosoTell,  #sadTell {
+  display: block;
+  width: 280px;
+  height: 140px;
   padding: 12px 16px;
-  width: 250px;
-  height:  150px;
-  font-size: 16px;
+  font-size: 15px;
   border-radius: 16px;
   border: 1px solid #ccc;
+  font-family: 'Noto Serif Thai', serif;
+  resize: none;
+  background: rgba(255,255,255,0.85);
+}
+
+#goodStory:placeholder-shown, #sosoStory:placeholder-shown, #sadStory:placeholder-shown,
+#goodTell:placeholder-shown,  #sosoTell:placeholder-shown,  #sadTell:placeholder-shown {
+  padding-top: 50px;
   text-align: center;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(100px)
 }
 
-/* ตอนยังว่าง */
-#goodTell:placeholder-shown {
-  padding-top: 60px;
-  font-family: 'Noto Serif Thai', serif;
-}
-
-/* ตอนเริ่มพิมพ์ */
-#goodTell:not(:placeholder-shown) {
-  padding-top: 16px;
+#goodStory:not(:placeholder-shown), #sosoStory:not(:placeholder-shown), #sadStory:not(:placeholder-shown),
+#goodTell:not(:placeholder-shown),  #sosoTell:not(:placeholder-shown),  #sadTell:not(:placeholder-shown) {
+  padding-top: 12px;
   text-align: left;
-  font-family: 'Noto Serif Thai', serif;
 }
 
-#sosoTell {
-  display: block;    
-  margin: 120px auto 0;   
-  padding: 12px 16px;
-  width: 250px;
-  height:  150px;
-  font-size: 16px;
-  border-radius: 16px;
-  border: 1px solid #ccc;
-  text-align: center;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(100px)
-}
-
-/* ตอนยังว่าง */
-#sosoTell:placeholder-shown {
-  padding-top: 60px;
-  font-family: 'Noto Serif Thai', serif;
-}
-
-/* ตอนเริ่มพิมพ์ */
-#sosoTell:not(:placeholder-shown) {
-  padding-top: 16px;
-  text-align: left;
-  font-family: 'Noto Serif Thai', serif;
-}
-
-#sadTell {
-  display: block;    
-  margin: 120px auto 0;   
-  padding: 12px 16px;
-  width: 250px;
-  height:  150px;
-  font-size: 16px;
-  border-radius: 16px;
-  border: 1px solid #ccc;
-  text-align: center;
-  font-family: 'Noto Serif Thai', serif;
-  transform: translateY(100px)
-}
-
-/* ตอนยังว่าง */
-#sadTell:placeholder-shown {
-  padding-top: 60px;
-  font-family: 'Noto Serif Thai', serif;
-}
-
-/* ตอนเริ่มพิมพ์ */
-#sadTell:not(:placeholder-shown) {
-  padding-top: 16px;
-  text-align: left;
-  font-family: 'Noto Serif Thai', serif;
-}
-
+/* Place-frame / finale screens */
 .content_Good13 {
-  text-align: center;
-  color: white;
-  line-height: 1.8;
-  font-weight: 400;
-  font-size: medium;
-
-  /* 👇 ปรับตำแหน่งแนวตั้งตรงนี้ */
-  transform: translateY(-200px); /* เลื่อนขึ้น */
-}
-
-.touchtogonext-white-down {
   position: absolute;
-  bottom: 75px;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
+  padding: 28px;
   text-align: center;
-
-  font-size: 14px;
-  color: rgb(255, 255, 255);
-  font-family: 'Noto Serif Thai', serif;
-  animation: softBlink 3s ease-in-out infinite;
-}
-
-@keyframes softBlink {
-  0%   { opacity: 0.3; }
-  50%  { opacity: 1; }
-  100% { opacity: 0.3; }
-}
-
-.eye-closed-bg {
-  background-image: url("closed-eye.jpeg");
-  /* background-image: url("beach-rec-white.jpeg"); */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.wake-room-bg {
-  background-image: url("room-wake.jpeg");
-  /* background-image: url("beach-rec-white.jpeg"); */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.touchtogonext-white-down-room {
-  position: absolute;
-  bottom: 50px;
-  width: 100%;
-  text-align: center;
-
-  font-size: 14px;
-  color: rgb(255, 255, 255);
-  font-family: 'Noto Serif Thai', serif;
-  animation: softBlink 3s ease-in-out infinite;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #fff;
 }
 
 .content_Good18 {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 28px;
   text-align: center;
-  color: white;
-  line-height: 1.8;
-  font-weight: 400;
-  font-size: medium;
-
-  /* 👇 ปรับตำแหน่งแนวตั้งตรงนี้ */
-  transform: translateY(-100px); /* เลื่อนขึ้น */
-}
-
-#screenGood20 {
-  background-image: url("door.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-#screenSoso20 {
-  background-image: url("door.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-#screenSad20 {
-  background-image: url("door.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #fff;
 }
 
 .content_Good20 {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 28px;
   text-align: center;
-  color: white;
-  line-height: 1.8;
-  font-weight: 400;
-  font-size: medium;
-
-  /* 👇 ปรับตำแหน่งแนวตั้งตรงนี้ */
-  transform: translateY(-270px); /* เลื่อนขึ้น */
-}
-
-.letter-1 {
-  background-image: url("letter-1.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.letter-2 {
-  background-image: url("letter-2.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.letter-3 {
-  background-image: url("letter-3.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.letter-4 {
-  background-image: url("letter-4.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  font-size: 15px;
+  line-height: 1.9;
+  color: #fff;
 }
 
 .content_Good24 {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
   text-align: center;
-  color: rgb(0, 0, 0);
-  line-height: 1.8;
-  font-weight: 400;
-  font-size: medium;
+  font-size: 15px;
+  color: #000;
   animation: softBlink 3s ease-in-out infinite;
-
-  /* 👇 ปรับตำแหน่งแนวตั้งตรงนี้ */
-  transform: translateY(-100px); /* เลื่อนขึ้น */
 }
 
-/* พื้นหลังรูป */
-.letter-bg {
-  background-image: url("yellow_bg.jpeg"); /* ← รูปที่เธอทำไว้ */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* กล่องจดหมาย */
+/* ============================================================
+   LETTER CONTAINER
+   ============================================================ */
 .letter-container {
-  background: rgba(255, 255, 255, 0.9);
-  /* max-height: 50vh; */
-  width: 90%;
-  max-height: 80vh;          /* กันล้นจอ */
-  overflow-y: auto;          /* เลื่อนอ่านได้ */
-  padding: 32px;
+  background: rgba(255,255,255,0.93);
+  width: 88%;
+  max-height: 76vh;
+  overflow-y: auto;
+  padding: 28px 22px;
   border-radius: 16px;
-
-  line-height: 1.4;
-  font-size: 16px;
-  white-space: pre-line;     /* สำคัญมาก */
+  line-height: 1.8;
+  font-size: 14px;
+  white-space: pre-line;
+  -webkit-overflow-scrolling: touch;
+  z-index: 1;
 }
-
-
-
-.next-btn-black-mood {
-  display: block;
-  margin: 30px auto 0;
-
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 30px;
-  background-color: #000000cc;
-  color: #fff;
-
-  transition: background-color 0.3s;
-  font-family: 'Noto Serif Thai', serif;
-  white-space: nowrap;
-  width: 100px;
-  text-align: center;
-}
-
-.next-btn-black-mood:hover {
-  background-color: #000000;
-}
-
