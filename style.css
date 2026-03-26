@@ -8,7 +8,7 @@
 }
 
 html {
-  /* Prevent bounce/overscroll on iOS */
+  /* iOS Safari: prevent bounce overscroll */
   height: -webkit-fill-available;
 }
 
@@ -16,56 +16,53 @@ html, body {
   width: 100%;
   height: 100%;
   font-family: 'Noto Serif Thai', serif;
-  /* Default (mobile): plain white background */
+  /* Mobile: plain white so no dark gap shows */
   background-color: #fff;
 }
 
 /* Page fade-in / fade-out */
 body {
   opacity: 1;
-  transition: opacity 0.6s ease;
+  transition: opacity 2.0s ease;
 }
 body.fade-out {
   opacity: 0;
 }
 
 /* ============================================================
-   PHONE FRAME
-   Mobile-first: on real phones the frame IS the screen.
-   On desktop (≥ 600px wide) it becomes a centred phone mockup.
+   PHONE FRAME — mobile-first
+   On real phones: fills the screen completely (no frame).
+   On desktop (≥600px): shows as a centred phone mockup.
    ============================================================ */
 
-/* MOBILE default — frame fills the full screen exactly */
+/* MOBILE default — true full screen */
 .phone-frame {
   position: relative;
   width: 100%;
-  /* Use svh (small viewport height) so content fits inside
-     the browser chrome on iOS/Android.
-     Falls back gracefully to 100vh on older browsers. */
+  /* 100svh = visible area BELOW the browser address bar.
+     Fixes the top/bottom clipping on iOS & Android. */
   height: 100svh;
   overflow: hidden;
   background: #fff;
-  /* Respect notch / dynamic island / home indicator on iPhones */
+  /* Respect notch / Dynamic Island / home indicator on iPhone */
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
 }
 
-/* Older browsers that don't support svh */
+/* Fallback for browsers that don't support 100svh */
 @supports not (height: 100svh) {
   .phone-frame {
     height: 100vh;
-    /* iOS Safari fix: respect the actual visible area */
     height: -webkit-fill-available;
   }
 }
 
-/* DESKTOP — show as a centred phone mockup */
+/* DESKTOP — show as centred phone mockup */
 @media (min-width: 600px) {
   html, body {
     background-color: #1a1a1a;
-    /* Centre the phone frame vertically too */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -77,8 +74,9 @@ body.fade-out {
     height: min(844px, 95svh);
     border-radius: 40px;
     box-shadow: 0 0 80px rgba(0, 0, 0, 0.6);
-    /* Override the fill-available fallback on desktop */
     flex-shrink: 0;
+    /* Remove safe-area padding on desktop (not needed) */
+    padding: 0;
   }
 }
 
@@ -93,7 +91,7 @@ body.fade-out {
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.6s ease;
+  transition: opacity  2.0s ease;
 }
 
 .screen.active {
@@ -179,7 +177,7 @@ button {
   font-size: 15px;
   transition: background-color 0.3s, transform 0.15s;
 }
-button:active { transform: scale(0.97); }
+/* button:active { transform: scale(0.97); } */
 
 .next-btn-pink-P1 {
   padding: 10px 28px;
@@ -206,18 +204,18 @@ button:active { transform: scale(0.97); }
 /* ============================================================
    SCREEN 1 — opening / title
    ============================================================ */
-.content_P1 {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #fff;
-  padding: 32px 24px;
-  gap: 10px;
-}
+  .content_P1 {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 32px 24px 184px 24px; /* <--- เปลี่ยนบรรทัดนี้: เพิ่ม padding ด้านล่างเป็น 100px (บน ขวา ล่าง ซ้าย) */
+    gap: 10px;
+  }
 .content_P1 h1        { font-size: 26px; font-weight: 600; }
 .content_P1 .subtitle { font-size: 15px; line-height: 1.9; }
 
@@ -314,7 +312,7 @@ button:active { transform: scale(0.97); }
    ============================================================ */
 .content_P7 .subtitle {
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 0;
   width: 100%;
   transform: translateY(-50%);
@@ -359,14 +357,14 @@ button:active { transform: scale(0.97); }
 .button_1 {
   position: absolute;
   width: 100%;
-  top: 57%;
+  top: 45%;
   display: flex;
   justify-content: center;
 }
 .button_2 {
   position: absolute;
   width: 100%;
-  top: 70%;
+  top: 53%;
   display: flex;
   justify-content: center;
 }
@@ -392,7 +390,7 @@ button:active { transform: scale(0.97); }
 .content_dog .subtitle,
 .content_cat .subtitle {
   position: absolute;
-  top: 24%;
+  top: 30%;
   width: 100%;
   text-align: center;
   font-size: 15px;
@@ -403,7 +401,7 @@ button:active { transform: scale(0.97); }
 
 .button_4 {
   position: absolute;
-  bottom: 44%;
+  bottom: 50%;
   left: 50%;
   transform: translateX(-50%);
   padding: 10px 50px;
@@ -416,7 +414,7 @@ button:active { transform: scale(0.97); }
    ============================================================ */
 .content_P18 {
   position: absolute;
-  top: 28%;
+  top: 40%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -428,7 +426,7 @@ button:active { transform: scale(0.97); }
 
 .actions-2 {
   position: absolute;
-  bottom: 0;
+  top: 45%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -493,7 +491,7 @@ button:active { transform: scale(0.97); }
 /* Screen 26 — mood choice */
 .content_P26 {
   position: absolute;
-  top: 26%;
+  top: 40%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -505,7 +503,7 @@ button:active { transform: scale(0.97); }
 
 .actions-3 {
   position: absolute;
-  bottom: 0;
+  top: 45%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -636,7 +634,7 @@ button:active { transform: scale(0.97); }
 /* Place-frame / finale screens */
 .content_Good13 {
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -649,7 +647,7 @@ button:active { transform: scale(0.97); }
 
 .content_Good18 {
   position: absolute;
-  top: 44%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -662,7 +660,7 @@ button:active { transform: scale(0.97); }
 
 .content_Good20 {
   position: absolute;
-  top: 30%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -675,7 +673,7 @@ button:active { transform: scale(0.97); }
 
 .content_Good24 {
   position: absolute;
-  top: 50%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -691,7 +689,7 @@ button:active { transform: scale(0.97); }
 .letter-container {
   background: rgba(255,255,255,0.93);
   width: 88%;
-  max-height: 76vh;
+  max-height: 76svh;
   overflow-y: auto;
   padding: 28px 22px;
   border-radius: 16px;
