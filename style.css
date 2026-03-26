@@ -7,38 +7,79 @@
   box-sizing: border-box;
 }
 
+html {
+  /* Prevent bounce/overscroll on iOS */
+  height: -webkit-fill-available;
+}
+
 html, body {
   width: 100%;
   height: 100%;
   font-family: 'Noto Serif Thai', serif;
-  background-color: #1a1a1a;
+  /* Default (mobile): plain white background */
+  background-color: #fff;
 }
 
 /* Page fade-in / fade-out */
 body {
   opacity: 1;
-  transition: opacity 2.0s ease;
+  transition: opacity 0.6s ease;
 }
 body.fade-out {
   opacity: 0;
 }
 
 /* ============================================================
-   PHONE FRAME  — centres a 390×844 container on any screen
+   PHONE FRAME
+   Mobile-first: on real phones the frame IS the screen.
+   On desktop (≥ 600px wide) it becomes a centred phone mockup.
    ============================================================ */
+
+/* MOBILE default — frame fills the full screen exactly */
 .phone-frame {
   position: relative;
-  width: 390px;
-  height: 100dvh;
-  max-height: 844px;
-  margin: 0 auto;
+  width: 100%;
+  /* Use svh (small viewport height) so content fits inside
+     the browser chrome on iOS/Android.
+     Falls back gracefully to 100vh on older browsers. */
+  height: 100svh;
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 0 60px rgba(0,0,0,0.5);
+  /* Respect notch / dynamic island / home indicator on iPhones */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
-@media (max-height: 500px) {
-  .phone-frame { max-height: none; height: 100dvh; }
+/* Older browsers that don't support svh */
+@supports not (height: 100svh) {
+  .phone-frame {
+    height: 100vh;
+    /* iOS Safari fix: respect the actual visible area */
+    height: -webkit-fill-available;
+  }
+}
+
+/* DESKTOP — show as a centred phone mockup */
+@media (min-width: 600px) {
+  html, body {
+    background-color: #1a1a1a;
+    /* Centre the phone frame vertically too */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100svh;
+  }
+
+  .phone-frame {
+    width: 390px;
+    height: min(844px, 95svh);
+    border-radius: 40px;
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.6);
+    /* Override the fill-available fallback on desktop */
+    flex-shrink: 0;
+  }
 }
 
 /* ============================================================
@@ -52,7 +93,7 @@ body.fade-out {
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
-  transition: opacity  2.0s ease;
+  transition: opacity 0.6s ease;
 }
 
 .screen.active {
@@ -138,7 +179,7 @@ button {
   font-size: 15px;
   transition: background-color 0.3s, transform 0.15s;
 }
-/* button:active { transform: scale(0.97); } */
+button:active { transform: scale(0.97); }
 
 .next-btn-pink-P1 {
   padding: 10px 28px;
@@ -165,18 +206,18 @@ button {
 /* ============================================================
    SCREEN 1 — opening / title
    ============================================================ */
-  .content_P1 {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
-    padding: 32px 24px 184px 24px; /* <--- เปลี่ยนบรรทัดนี้: เพิ่ม padding ด้านล่างเป็น 100px (บน ขวา ล่าง ซ้าย) */
-    gap: 10px;
-  }
+.content_P1 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 32px 24px;
+  gap: 10px;
+}
 .content_P1 h1        { font-size: 26px; font-weight: 600; }
 .content_P1 .subtitle { font-size: 15px; line-height: 1.9; }
 
@@ -273,7 +314,7 @@ button {
    ============================================================ */
 .content_P7 .subtitle {
   position: absolute;
-  top: 30%;
+  top: 50%;
   left: 0;
   width: 100%;
   transform: translateY(-50%);
@@ -318,14 +359,14 @@ button {
 .button_1 {
   position: absolute;
   width: 100%;
-  top: 45%;
+  top: 57%;
   display: flex;
   justify-content: center;
 }
 .button_2 {
   position: absolute;
   width: 100%;
-  top: 53%;
+  top: 70%;
   display: flex;
   justify-content: center;
 }
@@ -351,7 +392,7 @@ button {
 .content_dog .subtitle,
 .content_cat .subtitle {
   position: absolute;
-  top: 30%;
+  top: 24%;
   width: 100%;
   text-align: center;
   font-size: 15px;
@@ -362,7 +403,7 @@ button {
 
 .button_4 {
   position: absolute;
-  bottom: 50%;
+  bottom: 44%;
   left: 50%;
   transform: translateX(-50%);
   padding: 10px 50px;
@@ -375,7 +416,7 @@ button {
    ============================================================ */
 .content_P18 {
   position: absolute;
-  top: 40%;
+  top: 28%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -387,7 +428,7 @@ button {
 
 .actions-2 {
   position: absolute;
-  top: 45%;
+  bottom: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -452,7 +493,7 @@ button {
 /* Screen 26 — mood choice */
 .content_P26 {
   position: absolute;
-  top: 40%;
+  top: 26%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -464,7 +505,7 @@ button {
 
 .actions-3 {
   position: absolute;
-  top: 45%;
+  bottom: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -595,7 +636,7 @@ button {
 /* Place-frame / finale screens */
 .content_Good13 {
   position: absolute;
-  top: 20%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -608,7 +649,7 @@ button {
 
 .content_Good18 {
   position: absolute;
-  top: 30%;
+  top: 44%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -621,7 +662,7 @@ button {
 
 .content_Good20 {
   position: absolute;
-  top: 10%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
@@ -634,7 +675,7 @@ button {
 
 .content_Good24 {
   position: absolute;
-  top: 35%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
