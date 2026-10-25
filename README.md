@@ -1,4 +1,4 @@
-# Letter to You
+# Letter to You 💌
 
 An interactive, Thai-language story for quiet self-reflection. You answer a few gentle questions, walk through a short dream, and at the end you receive a letter built from your own words.
 
